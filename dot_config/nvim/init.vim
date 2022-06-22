@@ -43,6 +43,8 @@ Plug 'catppuccin/nvim'
 
 Plug 'dracula/vim', { 'as': 'dracula' }
 
+Plug 'gabrielelana/vim-markdown'
+
 call plug#end()
 
 set clipboard+=unnamedplus
@@ -70,7 +72,7 @@ nnoremap <leader>l <C-w>l
 nnoremap <leader>h <C-w>h
 nnoremap <leader>n :NERDTreeToggle <CR>
 nnoremap <leader>N :NERDTreeFocus <CR>
-
+nnoremap <leader>è :source $MYVIMRC<CR>
 
 :highlight Cursorline cterm=bold
 set tabstop =4
@@ -93,3 +95,5 @@ let g:neovide_refresh_rate=144
 let g:neovide_cursor_antialiasing=v:true
 set guifont=JetBrainsMono\ Nerd\ Font:h10
 
+"Chezmoi
+autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
