@@ -45,6 +45,7 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 
 Plug 'gabrielelana/vim-markdown'
 
+
 call plug#end()
 
 set clipboard+=unnamedplus
