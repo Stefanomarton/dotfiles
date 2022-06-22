@@ -324,7 +324,7 @@ awful.key({ modkey,           }, "j",
     awful.key({ modkey },            "s",     function () 
 	awful.util.spawn("rofi -show drun -config ~/.config/rofi/rofidmenu.rasi") end,
               {description = "run prompt", group = "launcher"}),
-    awful.key({ modkey,           }, "c", function () awful.spawn("firefox") end,
+    awful.key({ modkey,           }, "a", function () awful.spawn("firefox") end,
               {description = "open a terminal", group = "launcher"}),
     -- Scratchpads
     awful.key ( { modkey}, "w", function() term_scratch:turn_on() end),
