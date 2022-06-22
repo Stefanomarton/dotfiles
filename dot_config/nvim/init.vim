@@ -49,7 +49,8 @@ call plug#end()
 
 set clipboard+=unnamedplus
 set wrap
-
+:set nospell
+let g:markdown_enable_spell_checking = 0
 " Colorscheme
 colorscheme dracula 
 "colorscheme gruvbox
@@ -95,5 +96,6 @@ let g:neovide_refresh_rate=144
 let g:neovide_cursor_antialiasing=v:true
 set guifont=JetBrainsMono\ Nerd\ Font:h10
 
+let g:markdown_enable_mappings = 0
 "Chezmoi
 autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
