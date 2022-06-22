@@ -13,12 +13,13 @@ fi
 alias sv= "sudo nvim"
 alias ka= "killall"
 alias v="nvim"
-alias r="ranger"
+alias rng="ranger"
 alias music="ncmpcpp"
 alias i3config="nvim ~/.config/i3/config"
 alias lsa="ls -a"
 alias mkd="mkdir"
-
+alias V="chezmoi edit"
+alias L="ls -a"
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -45,7 +46,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
- ENABLE_CORRECTION="true"
+ ENABLE_CORRECTION="false"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -67,11 +68,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='nvim'
+ else
+   export EDITOR='nvim'
+ fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
