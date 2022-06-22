@@ -383,6 +383,8 @@ clientkeys = gears.table.join(
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
+
+
 for i = 1, 9 do
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
@@ -427,7 +429,17 @@ for i = 1, 9 do
                           end
                       end
                   end,
-                  {description = "toggle focused client on tag #" .. i, group = "tag"})
+                  {description = "toggle focused client on tag #" .. i, group = "tag"}),
+        awful.key({ modkey, "Shift"}, "#" .. i + 9, 
+                function()
+                    if client.focus then
+                    local tag = root.tags() 
+                    if tag then
+                    client.focus:move_to_tag(tag) 
+                        end 
+                    end
+                 end)
+
     )
 end
 

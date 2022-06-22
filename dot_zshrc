@@ -9,11 +9,12 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+
 # Alias
 alias sv= "sudo nvim"
 alias ka= "killall"
 alias v="nvim"
-alias rng="ranger"
+alias r="ranger"
 alias music="ncmpcpp"
 alias i3config="nvim ~/.config/i3/config"
 alias lsa="ls -a"

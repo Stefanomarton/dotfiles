@@ -15,7 +15,7 @@ set formatoptions-=cro
 set ignorecase
 set smartcase
 set wrap
-
+:ColorizerToggle 
 " Plugin installer
 call plug#begin('~/.vim/plugged')
 
@@ -45,6 +45,9 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 
 Plug 'gabrielelana/vim-markdown'
 
+Plug 'norcalli/nvim-colorizer.lua'
+
+Plug 'tridactyl/vim-tridactyl'
 
 call plug#end()
 
@@ -100,3 +103,4 @@ set guifont=JetBrainsMono\ Nerd\ Font:h10
 let g:markdown_enable_mappings = 0
 "Chezmoi
 autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
+
