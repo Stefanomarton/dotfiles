@@ -1,5 +1,4 @@
 "" BINDINGS ""
-
 "" Open the selection in a new tab
 bind --mode=visual t composite js document.getSelection().toString() | tabopen
 
@@ -12,13 +11,14 @@ unbind <C-f>
 bind o fillcmdline bmarks  
 bind O fillcmdline bmarks -t
 bind a fillcmdline tabopen
+
 "" Handy multiwindow/multitasking binds
  bind gd tabdetach
  bind gD composite tabduplicate; tabdetach
  
 "" MISC SETTINGS ""
 "" set editorcmd to suckless terminal, or use the defaults on other platforms
- js tri.browserBg.runtime.getPlatformInfo().then(os=>{const editorcmd = os.os=="linux" ? "kitty nvim" : "auto"; tri.config.set("editorcmd", editorcmd)})
+js tri.browserBg.runtime.getPlatformInfo().then(os=>{const editorcmd = os.os=="linux" ? "kitty nvim" : "auto"; tri.config.set("editorcmd", editorcmd)})
  
 "" Sane hinting mode
 set hintfiltermode vimperator-reflow
@@ -36,3 +36,4 @@ command translate js let googleTranslateCallback = document.createElement('scrip
 
 "" For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 "" vim: set filetype=tridactyl
+autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", " ")

@@ -15,7 +15,7 @@ set formatoptions-=cro
 set ignorecase
 set smartcase
 set wrap
-:ColorizerToggle 
+
 " Plugin installer
 call plug#begin('~/.vim/plugged')
 

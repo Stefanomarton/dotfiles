@@ -2,13 +2,13 @@
 require("main.error-handling")           
 pcall(require, "luarocks.loader")
 
-
 -- other imports
 local beautiful = require("beautiful")
 local sharedtags = require("sharedtags")
 local awesomebuttons = require("awesome-buttons.awesome-buttons")
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+
 -- other configuration stuff here
 beautiful.init("some_theme.lua")
 local bling = require("bling")
@@ -22,6 +22,7 @@ require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
 local logout_popup = require("logout-popup-widget.logout-popup")
+
 -- Theme handling library
 local beautiful = require("beautiful")
 
@@ -31,9 +32,7 @@ local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
 -- Enable hotkeys help widget for VIM and other apps
--- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
-
 
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
@@ -242,6 +241,16 @@ root.buttons(gears.table.join(
 ))
 -- }}}
 
+
+--{{{ Move client to same tag across screens
+local function move_client_to_screen (c,s)
+    local index = c.first_tag.index
+    c:move_to_screen(s)
+    local tag = c.screen.tags[index]
+    c:move_to_tag(tag)
+    if tag then tag:view_only() end
+end
+
 -- {{{ Key bindings
 
 globalkeys = gears.table.join(
@@ -430,17 +439,12 @@ for i = 1, 9 do
                       end
                   end,
                   {description = "toggle focused client on tag #" .. i, group = "tag"}),
-        awful.key({ modkey, "Shift"}, "#" .. i + 9, 
-                function()
-                    if client.focus then
-                    local tag = root.tags() 
-                    if tag then
-                    client.focus:move_to_tag(tag) 
-                        end 
-                    end
-                 end)
-
+        awful.key({ modkey ,"Shift" }, "#" .. i +9,
+                function(c)
+            move_client_to_screen(c,i)
+        end
     )
+           )
 end
 
 clientbuttons = gears.table.join(
@@ -512,7 +516,12 @@ awful.rules.rules = {
     { rule_any = {type = { "normal", "dialog" }
       }, properties = { titlebars_enabled = false }
     },
-
+    
+-- Set Firefox to always map on the tag named "2" on screen 1.
+     { rule = { class = "discord"
+       properties = { screen = 3, tag = "1" } },
+      { rule = { class = "spotify"
+       properties = { screen = 2, tag = "1" } },
 }
 -- }}}
 
@@ -544,7 +553,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Gaps
 
 -- Autostart
-awful.spawn.with_shell("xset r rate 300 50")
+awful.spawn.with_shell("xset r rate 300 60")
 awful.spawn("picom")
 awful.spawn.with_shell("nm-applet")
 awful.spawn("overgrive")
