@@ -43,11 +43,17 @@ Plug 'catppuccin/nvim'
 
 Plug 'dracula/vim', { 'as': 'dracula' }
 
-Plug 'gabrielelana/vim-markdown'
+"Plug 'gabrielelana/vim-markdown'
 
 Plug 'norcalli/nvim-colorizer.lua'
 
 Plug 'tridactyl/vim-tridactyl'
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+
+Plug 'tpope/vim-surround'
+
+"Plug 'svermeulen/vim-macrobatics'
 
 call plug#end()
 
@@ -77,7 +83,10 @@ nnoremap <leader>l <C-w>l
 nnoremap <leader>h <C-w>h
 nnoremap <leader>n :NERDTreeToggle <CR>
 nnoremap <leader>N :NERDTreeFocus <CR>
-nnoremap <leader>è :source $MYVIMRC<CR>
+nnoremap <leader>è :source $MYVIMRC<CR> 
+nnoremap <leader>e <C-R>{
+nmap <nowait> q <plug>(Mac_Play)
+nmap <nowait> gq <plug>(Mac_RecordNew)
 
 :highlight Cursorline cterm=bold
 set tabstop =4
@@ -103,4 +112,10 @@ set guifont=JetBrainsMono\ Nerd\ Font:h10
 let g:markdown_enable_mappings = 0
 "Chezmoi
 autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
+
+let g:mkdp_browser = '/bin/firefox'
+
+let @q="i\$$\\ce{    }$$\<ESC>\h\h\h\h\i"
+let @e="i\$\\ce{    }$\<ESC>\h\h\h\h\i"
+
 

@@ -518,11 +518,7 @@ awful.rules.rules = {
     },
     
 -- Set Firefox to always map on the tag named "2" on screen 1.
-     { rule = { class = "discord"
-       properties = { screen = 3, tag = "1" } },
-      { rule = { class = "spotify"
-       properties = { screen = 2, tag = "1" } },
-}
+   }
 -- }}}
 
 -- {{{ Signals
