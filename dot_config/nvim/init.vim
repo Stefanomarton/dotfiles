@@ -15,6 +15,7 @@ set formatoptions-=cro
 set ignorecase
 set smartcase
 set wrap
+set noshowcmd
 
 " Plugin installer
 call plug#begin('~/.vim/plugged')

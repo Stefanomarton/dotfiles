@@ -1,6 +1,5 @@
 #include catppuccin
 include dracula
-set smooth-scroll "true"
 :set scroll-step 200
 set selection-clipboard clipboard
 set adjust-open width
