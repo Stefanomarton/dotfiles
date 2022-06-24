@@ -241,16 +241,6 @@ root.buttons(gears.table.join(
 ))
 -- }}}
 
-
---{{{ Move client to same tag across screens
-local function move_client_to_screen (c,s)
-    local index = c.first_tag.index
-    c:move_to_screen(s)
-    local tag = c.screen.tags[index]
-    c:move_to_tag(tag)
-    if tag then tag:view_only() end
-end
-
 -- {{{ Key bindings
 
 globalkeys = gears.table.join(
@@ -338,7 +328,7 @@ awful.key({ modkey,           }, "j",
     -- Scratchpads
     awful.key ( { modkey}, "w", function() term_scratch:turn_on() end),
    -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
+    awful.key({ modkey }, "p", function() awful.util.spawn("dmenu_run -c -g 3 -o 0.2 -fn 'Droid Sans Mono-14' -l 10 -h 20 -bw 1") end,
               {description = "show the menubar", group = "launcher"}),
     awful.key({"Mod1", "Shift"}, "2", function() awful.spawn.with_shell ("flameshot gui")
      
