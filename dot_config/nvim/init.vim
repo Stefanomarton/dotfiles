@@ -53,6 +53,13 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 Plug 'tpope/vim-surround'
 
+Plug 'vim-pandoc/vim-pandoc'
+
+Plug 'vim-pandoc/vim-pandoc-syntax'
+
+Plug 'vim-pandoc/vim-rmarkdown'
+
+
 "Plug 'svermeulen/vim-macrobatics'
 
 call plug#end()
@@ -84,9 +91,9 @@ nnoremap <leader>h <C-w>h
 nnoremap <leader>n :NERDTreeToggle <CR>
 nnoremap <leader>N :NERDTreeFocus <CR>
 nnoremap <leader>è :source $MYVIMRC<CR> 
-nnoremap <leader>e <C-R>{
 nmap <nowait> q <plug>(Mac_Play)
 nmap <nowait> gq <plug>(Mac_RecordNew)
+nnoremap <leader>c :Pandoc -o <C-r>%<DEl><DEl>pdf<CR>
 
 :highlight Cursorline cterm=bold
 set tabstop =4
@@ -118,4 +125,6 @@ let g:mkdp_browser = '/bin/firefox'
 let @q="i\$$\\ce{    }$$\<ESC>\h\h\h\h\i"
 let @e="i\$\\ce{    }$\<ESC>\h\h\h\h\i"
 
-
+" configuration for vim-pandoc and vim-rmarkdown
+let g:pandoc#modules#disabled = ["folding", "spell"]
+let g:pandoc#syntax#conceal#use = 0
