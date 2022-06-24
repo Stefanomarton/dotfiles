@@ -234,6 +234,17 @@ local term_scratch = bling.module.scratchpad {
    dont_focus_before_close  = true,                 -- When set to true, the scratchpad will be closed by the toggle function regardless of whether its focused or not. When set to false, the toggle function will first bring the scratchpad into focus and only close it on a second call
 }
 
+local term = bling.module.scratchpad {
+    command = "kitty --class termscratch",
+    rule = { instance = "termscratch" },                     -- The rule that the scratchpad will be searched by
+    sticky = true,                                    -- Whether the scratchpad should be sticky
+    autoclose = true,                                 -- Whether it should hide itself when losing focus
+    floating = true,                                  -- Whether it should be floating (MUST BE TRUE FOR ANIMATIONS)
+    geometry = {x=1100, y=120, height=900, width=1200}, -- The geometry in a floating state
+   dont_focus_before_close  = true,                 
+}
+
+
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
     awful.button({ }, 4, awful.tag.viewnext),
@@ -327,6 +338,7 @@ awful.key({ modkey,           }, "j",
               {description = "open a terminal", group = "launcher"}),
     -- Scratchpads
     awful.key ( { modkey}, "w", function() term_scratch:turn_on() end),
+    awful.key ( { modkey}, "t", function() term:turn_on() end),
    -- Menubar
     awful.key({ modkey }, "p", function() awful.util.spawn("dmenu_run -c -g 3 -o 0.2 -fn 'Droid Sans Mono-14' -l 10 -h 20 -bw 1") end,
               {description = "show the menubar", group = "launcher"}),
@@ -350,7 +362,7 @@ clientkeys = gears.table.join(
               {description = "move to master", group = "client"}),
     awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
               {description = "move to screen", group = "client"}),
-    awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
+    awful.key({ modkey,           }, "+",      function (c) c.ontop = not c.ontop            end,
               {description = "toggle keep on top", group = "client"}),
     awful.key({ modkey,           }, "n",
         function (c)
@@ -507,7 +519,14 @@ awful.rules.rules = {
       }, properties = { titlebars_enabled = false }
     },
     
--- Set Firefox to always map on the tag named "2" on screen 1.
+ { rule = { class = "discord" },
+ properties = { screen = 2, tag = "1" } },
+
+ { rule = { class = "spotify" },
+ properties = { screen = 3, tag = "1" } },
+
+ { rule = { class = "microsoft teams - preview" },
+ properties = { screen = 3, tag = "1" } },
    }
 -- }}}
 
