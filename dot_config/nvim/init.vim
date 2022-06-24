@@ -133,3 +133,6 @@ let g:pandoc#modules#disabled = ["folding", "spell"]
 let g:pandoc#syntax#conceal#use = 0
 
 let g:mkdp_browserfunc = 'MKDP_browserfunc_default'
+
+inoremap <Space><Space> <Esc>/<++><Enter>"_c4l
+inoremap ,, $ce{<Space><Space><Space>}$ <++><Esc>hhhhhhhi
