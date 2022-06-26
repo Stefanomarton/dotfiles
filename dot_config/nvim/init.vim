@@ -91,8 +91,6 @@ nnoremap <leader>h <C-w>h
 nnoremap <leader>n :NERDTreeToggle <CR>
 nnoremap <leader>N :NERDTreeFocus <CR>
 nnoremap <leader>è :source $MYVIMRC<CR> 
-nmap <nowait> q <plug>(Mac_Play)
-nmap <nowait> gq <plug>(Mac_RecordNew)
 noremap <leader>h ys(<CR>
 noremap <leader>[ ys[<CR>
 noremap <leader>{ ys[<CR>
