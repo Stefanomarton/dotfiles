@@ -1,0 +1,7 @@
+xrdb -merge ~/.Xresources &
+xrandr --output DVI-D-0 --mode 1920x1080 --rotate right --output HDMI-0 --mode 1920x1080 --rotate left --output DP-2 --primary --mode 3440x1440 --rate 144  &
+sleep 2 &
+xmodmap .Xmodmap &
+sleep 1 &
+exec awesome &
+
