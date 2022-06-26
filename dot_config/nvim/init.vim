@@ -44,15 +44,13 @@ Plug 'catppuccin/nvim'
 
 Plug 'dracula/vim', { 'as': 'dracula' }
 
-"Plug 'gabrielelana/vim-markdown'
-
 Plug 'norcalli/nvim-colorizer.lua'
 
 Plug 'tridactyl/vim-tridactyl'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
-Plug 'tpope/vim-surround'
+Plug 'yaocccc/vim-surround'
 
 Plug 'vim-pandoc/vim-pandoc'
 
@@ -95,8 +93,13 @@ nnoremap <leader>N :NERDTreeFocus <CR>
 nnoremap <leader>è :source $MYVIMRC<CR> 
 nmap <nowait> q <plug>(Mac_Play)
 nmap <nowait> gq <plug>(Mac_RecordNew)
-"nnoremap <leader>C :!kitty --class zathura -e zathura <C-r>%<DEl><DEl>pdf<CR> :Pandoc -o <C-r>%<DEl><DEl>pdf<CR>
-"nnoremap <leader>c :Pandoc -o <C-r>%<DEl><DEl>pdf<CR>
+noremap <leader>h ys(<CR>
+noremap <leader>[ ys[<CR>
+noremap <leader>{ ys[<CR>
+noremap <leader>{ yS)<CR>
+noremap <leader>{ yS]<CR>
+noremap <leader>{ yS}<CR>
+
 
 :highlight Cursorline cterm=bold
 set tabstop =4
@@ -135,6 +138,6 @@ let g:pandoc#syntax#conceal#use = 0
 let g:mkdp_browserfunc = 'MKDP_browserfunc_default'
 
 autocmd FileType md inoremap [[ <Esc>/<++><Enter>"_c4l
-inoremap ,, $ce{<Space><Space><Space>}$ <++><Esc>hhhhhhhi
 
+inoremap ,, $ce{<Space><Space><Space>}$ <++><Esc>hhhhhhhi
 

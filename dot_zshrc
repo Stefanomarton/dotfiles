@@ -84,6 +84,8 @@ export ARCHFLAGS="-arch x86_64"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH=$PATH:/home/stefanomarton/.spicetify
 
+export PATH=$PATH:/home/stefanomarton/Scripts
+
 # Use ranger to switch diurectories and bind it to ctrl-o
 rngcd () {
     tmp="$(mktemp)"
@@ -95,5 +97,4 @@ rngcd () {
     fi
     }
 bindkey -s '^o' 'rngcd\n'
-
 

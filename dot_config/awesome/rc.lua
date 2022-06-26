@@ -152,11 +152,11 @@ awful.screen.connect_for_each_screen(function(s)
     
 -- Each screen has unique tag table (sort of, tags 6-10 are renamed tags 1-4 on second screen)
     if s.index==1 then
-    awful.tag({ " 1 ", " 2 ", " 3 ", " 4 "}, screen[1], awful.layout.layouts[1])
+    awful.tag({ " · ", " · ", " · ", " · "}, screen[1], awful.layout.layouts[1])
     elseif s.index==2 then
-    awful.tag({ " 5 ", " 6 ", " 7 "}, screen[2], awful.layout.layouts[2])
+    awful.tag({ " · ", " · ", " · "}, screen[2], awful.layout.layouts[2])
     elseif s.index==3 then
-    awful.tag({ " 8 ", " 9 ", " 10 " }, screen[3], awful.layout.layouts[2])
+    awful.tag({ " · ", " · ", " · " }, screen[3], awful.layout.layouts[2])
     end
     
     -- Create a taglist widget

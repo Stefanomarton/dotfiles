@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "$1" | entr compiler "$1"
+
