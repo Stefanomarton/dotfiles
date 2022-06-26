@@ -95,8 +95,8 @@ nnoremap <leader>N :NERDTreeFocus <CR>
 nnoremap <leader>è :source $MYVIMRC<CR> 
 nmap <nowait> q <plug>(Mac_Play)
 nmap <nowait> gq <plug>(Mac_RecordNew)
-nnoremap <leader>C :!kitty --class zathura -e zathura <C-r>%<DEl><DEl>pdf<CR> :Pandoc -o <C-r>%<DEl><DEl>pdf<CR>
-nnoremap <leader>c :Pandoc -o <C-r>%<DEl><DEl>pdf<CR>
+"nnoremap <leader>C :!kitty --class zathura -e zathura <C-r>%<DEl><DEl>pdf<CR> :Pandoc -o <C-r>%<DEl><DEl>pdf<CR>
+"nnoremap <leader>c :Pandoc -o <C-r>%<DEl><DEl>pdf<CR>
 
 :highlight Cursorline cterm=bold
 set tabstop =4
@@ -121,7 +121,7 @@ set guifont=JetBrainsMono\ Nerd\ Font:h10
 
 let g:markdown_enable_mappings = 0
 "Chezmoi
-autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
+autocmd BufWritePost ~/.local/share/chezmoi/* !chezmoi apply --source-path "%" 
 
 let g:mkdp_browser = '/bin/firefox'
 
@@ -134,5 +134,7 @@ let g:pandoc#syntax#conceal#use = 0
 
 let g:mkdp_browserfunc = 'MKDP_browserfunc_default'
 
-inoremap <Space><Space> <Esc>/<++><Enter>"_c4l
+autocmd FileType md inoremap [[ <Esc>/<++><Enter>"_c4l
 inoremap ,, $ce{<Space><Space><Space>}$ <++><Esc>hhhhhhhi
+
+
