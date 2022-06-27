@@ -63,8 +63,8 @@ editor_cmd = terminal .. " -e " .. editor
     -- awful.layout.suit.tile.bottom,
     --awful.layout.suit.tile.top,
     --awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
+    --awful.layout.suit.fair.horizontal,
+    --awful.layout.suit.spiral,
     --awful.layout.suit.spiral.dwindle,
     --awful.layout.suit.max,
     --awful.layout.suit.magnifier,
@@ -146,19 +146,102 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+---- When client get created
+--client.connect_signal("manage", function(c)
+--local t = awful.screen.focused().selected_tag
+--    if #t:clients() == 1 then
+--    local a = master_width_factor 
+--    else
+--    local a = expand
+--    end
+--end)
+--
+---- When client get deleted
+--client.connect_signal("unmanage", function(c)
+-- local t = awful.screen.focused().selected_tag
+--    if #t:clients() == 1 then
+--    local a = master_width_factor 
+--    else
+--    local a = expand 
+--    end
+--end)
+
+-- Each screen has unique tag table (sort of, tags 6-10 are renamed tags 1-4 on second screen)
+awful.tag.add("·", {
+    layout             = bling.layout.centered,
+    master_fill_policy = "master_width_factor",
+    gap_single_client  = true,
+    gap                = 15,
+    screen             = 1,
+    selected           = true,
+})
+
+awful.tag.add("·", {
+    layout             = bling.layout.centered,
+    gap_single_client  = true,
+    gap                = 15,
+    screen             = 1,
+})
+
+awful.tag.add("·", {
+    layout             = bling.layout.centered,
+    gap_single_client  = true,
+    gap                = 15,
+    screen             = 1,
+})
+
+awful.tag.add("·", {
+    layout             = bling.layout.centered,
+    gap_single_client  = true,
+    gap                = 15,
+    screen             = 1,
+})
+
+
+awful.tag.add("·", {
+    layout             = awful.layout.suit.fair.horizontal,
+    gap_single_client  = true,
+    gap                = 15,
+    screen             = 2,
+    selected           = true,
+})
+
+
+awful.tag.add("·", {
+    layout             = awful.layout.suit.fair.horizontal,
+    gap_single_client  = true,
+    gap                = 15,
+    screen             = 2,
+})
+
+
+awful.tag.add("·", {
+    layout             = awful.layout.suit.fair.horizontal,
+    gap_single_client  = true,
+    gap                = 15,
+    screen             = 3,
+    selected           = true,
+})
+
+
+awful.tag.add("·", {
+    layout             = awful.layout.suit.fair.horizontal,
+    gap_single_client  = true,
+    gap                = 15,
+    screen             = 3,
+})
+
+
 awful.screen.connect_for_each_screen(function(s)
     
     -- Wallpaper
     set_wallpaper(s)
     
--- Each screen has unique tag table (sort of, tags 6-10 are renamed tags 1-4 on second screen)
-    if s.index==1 then
-    awful.tag({ " · ", " · ", " · ", " · "}, screen[1], awful.layout.layouts[1])
-    elseif s.index==2 then
-    awful.tag({ " · ", " · ", " · "}, screen[2], awful.layout.layouts[2])
-    elseif s.index==3 then
-    awful.tag({ " · ", " · ", " · " }, screen[3], awful.layout.layouts[2])
-    end
+--    if s.index==2 then
+--    awful.tag({ " · ", " · ", " · "}, screen[2], awful.layout.layouts[2])
+--    elseif s.index==3 then
+--    awful.tag({ " · ", " · ", " · " }, screen[3], awful.layout.layouts[2])
+--    end
     
     -- Create a taglist widget
     s.mytaglist = wibox.container.place( awful.widget.taglist {
@@ -573,22 +656,6 @@ bling.module.flash_focus.enable()
 beautiful.notification_icon_size = 64 
 
 
----- When client get created
---client.connect_signal("manage", function(c)
---local t = awful.screen.focused().selected_tag
---    if #t:clients() > 1 then
---    beautiful.useless_gap = 15
---    else
---    beautiful.useless_gap = 60
---    end
---end)
---
----- When client get deleted
---client.connect_signal("unmanage", function(c)
--- local t = awful.screen.focused().selected_tag
---    if #t:clients() > 1 then
---    beautiful.useless_gap = 3
---    else
---    beautiful.useless_gap = 10
---    end
---end)
+
+
+

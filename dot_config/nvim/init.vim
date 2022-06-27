@@ -1,3 +1,11 @@
+
+if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
+	echo "Downloading junegunn/vim-plug to manage plugins..."
+	silent !mkdir -p ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/
+	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim
+	autocmd VimEnter * PlugInstall
+endif
+
 syntax on
 set relativenumber
 set mouse=a 
@@ -17,6 +25,7 @@ set smartcase
 set wrap
 set noshowcmd
 
+set wildmode=longest,list,full
 " Plugin installer
 call plug#begin('~/.vim/plugged')
 
@@ -139,3 +148,11 @@ autocmd FileType md inoremap [[ <Esc>/<++><Enter>"_c4l
 
 inoremap ,, $ce{<Space><Space><Space>}$ <++><Esc>hhhhhhhi
 
+map <leader>C :w! \| !compiler "<c-r>%"<CR>
+map <leader>o :!opout <c-r>%<CR><CR>
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+autocmd BufWritePre * let currPos = getpos(".")
+autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\n\+\%$//e
+autocmd BufWritePre *.[ch] %s/\%$/\r/e
+autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
