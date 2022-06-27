@@ -1,5 +1,5 @@
 # Fetchmaster 6000
-fm6000 -c "random" --uptime "forever" 
+fm6000 -dogbert --uptime "forever" 
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -21,10 +21,15 @@ alias i3config="nvim ~/.config/i3/config"
 alias lsa="ls -a"
 alias mkd="mkdir"
 alias V="chezmoi edit"
-alias L="ls -a"
+alias L="ptls -a"
 alias gp="git push"
 alias ga="git add"
 alias gc="git commit"
+alias -g pwd="ptpwd"
+alias -g ls="ptls"
+alias -g ptcp="cp"
+
+
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
