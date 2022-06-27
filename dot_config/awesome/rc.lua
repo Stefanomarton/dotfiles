@@ -1,5 +1,5 @@
  -- Error handling
-require("main.error-handling")           
+require("main.error-handling")
 pcall(require, "luarocks.loader")
 
 -- other imports
@@ -19,7 +19,7 @@ beautiful.init("some_theme.lua")
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
-  
+
 -- Widget and layout library
 local wibox = require("wibox")
 local logout_popup = require("logout-popup-widget.logout-popup")
@@ -150,7 +150,7 @@ screen.connect_signal("property::geometry", set_wallpaper)
 --client.connect_signal("manage", function(c)
 --local t = awful.screen.focused().selected_tag
 --    if #t:clients() == 1 then
---    local a = master_width_factor 
+--    local a = master_width_factor
 --    else
 --    local a = expand
 --    end
@@ -160,37 +160,37 @@ screen.connect_signal("property::geometry", set_wallpaper)
 --client.connect_signal("unmanage", function(c)
 -- local t = awful.screen.focused().selected_tag
 --    if #t:clients() == 1 then
---    local a = master_width_factor 
+--    local a = master_width_factor
 --    else
---    local a = expand 
+--    local a = expand
 --    end
 --end)
 
 -- Each screen has unique tag table (sort of, tags 6-10 are renamed tags 1-4 on second screen)
-awful.tag.add("·", {
+awful.tag.add("  ·  ", {
     layout             = bling.layout.centered,
-    master_fill_policy = "master_width_factor",
+--    master_fill_policy = "master_width_factor",
     gap_single_client  = true,
-    gap                = 15,
+    gap                = 85,
     screen             = 1,
     selected           = true,
 })
 
-awful.tag.add("·", {
+awful.tag.add("  ·  ", {
     layout             = bling.layout.centered,
     gap_single_client  = true,
     gap                = 15,
     screen             = 1,
 })
 
-awful.tag.add("·", {
+awful.tag.add("  ·  ", {
     layout             = bling.layout.centered,
     gap_single_client  = true,
     gap                = 15,
     screen             = 1,
 })
 
-awful.tag.add("·", {
+awful.tag.add("  ·  ", {
     layout             = bling.layout.centered,
     gap_single_client  = true,
     gap                = 15,
@@ -198,7 +198,7 @@ awful.tag.add("·", {
 })
 
 
-awful.tag.add("·", {
+awful.tag.add("  ·  ", {
     layout             = awful.layout.suit.fair.horizontal,
     gap_single_client  = true,
     gap                = 15,
@@ -207,7 +207,7 @@ awful.tag.add("·", {
 })
 
 
-awful.tag.add("·", {
+awful.tag.add("  ·  ", {
     layout             = awful.layout.suit.fair.horizontal,
     gap_single_client  = true,
     gap                = 15,
@@ -215,7 +215,7 @@ awful.tag.add("·", {
 })
 
 
-awful.tag.add("·", {
+awful.tag.add("  ·  ", {
     layout             = awful.layout.suit.fair.horizontal,
     gap_single_client  = true,
     gap                = 15,
@@ -224,7 +224,7 @@ awful.tag.add("·", {
 })
 
 
-awful.tag.add("·", {
+awful.tag.add("  ·  ", {
     layout             = awful.layout.suit.fair.horizontal,
     gap_single_client  = true,
     gap                = 15,
@@ -233,16 +233,9 @@ awful.tag.add("·", {
 
 
 awful.screen.connect_for_each_screen(function(s)
-    
+
     -- Wallpaper
     set_wallpaper(s)
-    
---    if s.index==2 then
---    awful.tag({ " · ", " · ", " · "}, screen[2], awful.layout.layouts[2])
---    elseif s.index==3 then
---    awful.tag({ " · ", " · ", " · " }, screen[3], awful.layout.layouts[2])
---    end
-    
     -- Create a taglist widget
     s.mytaglist = wibox.container.place( awful.widget.taglist {
         screen  = s,
@@ -281,7 +274,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             s.mytaglist,
         },
-        s.mytasklist, 
+        s.mytasklist,
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             ram_widget({ color_used='#ffffff',
@@ -302,7 +295,7 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 -- }}}
 -- Sratchpads
-    -- Ranger  
+    -- Ranger
 local term_scratch = bling.module.scratchpad {
     command = "kitty --class spad -e ranger GoogleDrive/Università",           -- How to spawn the scratchpad
     rule = { instance = "spad" },                     -- The rule that the scratchpad will be searched by
@@ -320,7 +313,7 @@ local term = bling.module.scratchpad {
     autoclose = true,                                 -- Whether it should hide itself when losing focus
     floating = true,                                  -- Whether it should be floating (MUST BE TRUE FOR ANIMATIONS)
     geometry = {x=1100, y=280, height=900, width=1200}, -- The geometry in a floating state
-   dont_focus_before_close  = true,                 
+   dont_focus_before_close  = true,
 }
 
 
@@ -410,7 +403,7 @@ awful.key({ modkey,           }, "j",
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "s",     function () 
+    awful.key({ modkey },            "s",     function ()
 	awful.util.spawn("rofi -show drun -config ~/.config/rofi/rofidmenu.rasi") end,
               {description = "run prompt", group = "launcher"}),
     awful.key({ modkey,           }, "a", function () awful.spawn("firefox") end,
@@ -422,9 +415,9 @@ awful.key({ modkey,           }, "j",
     awful.key({ modkey }, "p", function() awful.util.spawn("dmenu_run -c -g 3 -o 0.2 -fn 'Droid Sans Mono-14' -l 10 -h 20 -bw 1") end,
               {description = "show the menubar", group = "launcher"}),
     awful.key({"Mod1", "Shift"}, "2", function() awful.spawn.with_shell ("flameshot gui")
-     
+
  end, {description = "Window Switcher", group = "bling"})
- )  
+ )
 
 clientkeys = gears.table.join(
     awful.key({ modkey,           }, "f",
@@ -437,7 +430,7 @@ clientkeys = gears.table.join(
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
-    awful.key({ "Mod1",}, "Return", function (c) c:swap(awful.client.getmaster()) end,
+    awful.key({ "Mod1",}, "space", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
     awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
               {description = "move to screen", group = "client"}),
@@ -487,7 +480,7 @@ for i = 1, 9 do
                         end
                   end,
                   {description = "view tag #"..i, group = "tag"}),
-                  
+
         -- Toggle tag display.
         awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()
@@ -597,7 +590,7 @@ awful.rules.rules = {
     { rule_any = {type = { "normal", "dialog" }
       }, properties = { titlebars_enabled = false }
     },
-    
+
  { rule = { class = "discord" },
  properties = { screen = 2, tag = "1" } },
 
@@ -642,8 +635,8 @@ awful.spawn("picom")
 awful.spawn.with_shell("nm-applet")
 awful.spawn("overgrive")
 awful.spawn.with_shell("~/.screenlayout/monitor.sh")
-awful.spawn.with_shell("xmodmap ~/.Xmodmap") 
-
+awful.spawn.with_shell("xmodmap ~/.Xmodmap")
+awful.spawn.with_shell("python ~/.config/awesome/autohidewibox.py")
 -- Wallpaper
 beautiful.init("~/.config/awesome/theme.lua")
 for s = 1, screen.count() do
@@ -653,9 +646,4 @@ end
 
 beautiful.tasklist_disable_icon = "true"
 bling.module.flash_focus.enable()
-beautiful.notification_icon_size = 64 
-
-
-
-
-
+beautiful.notification_icon_size = 64

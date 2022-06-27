@@ -8,13 +8,13 @@ endif
 
 syntax on
 set relativenumber
-set mouse=a 
+set mouse=a
 set number
 set undofile
-set cursorline 
+set cursorline
 set incsearch
 set hlsearch
-set showmatch 
+set showmatch
 filetype plugin on
 nnoremap <SPACE> <Nop>
 map <SPACE> <leader>
@@ -78,35 +78,35 @@ set wrap
 :set nospell
 let g:markdown_enable_spell_checking = 0
 " Colorscheme
-colorscheme dracula 
+colorscheme dracula
 "colorscheme gruvbox
 let g:airline_theme='dracula'
 set background=dark
-let g:gruvbox_italic=1 
+let g:gruvbox_italic=1
 set statusline=%F[%L][%{&ff}]%y[%04l,%04v]
-let g:airline_powerline_fonts = 1 
-let g:rainbow_active = 1 
+let g:airline_powerline_fonts = 1
+let g:rainbow_active = 1
 
 "Keybindings
 nnoremap <leader>g :Goyo<CR>
 nnoremap <leader>G :Goyo <CR> :set number <CR> :set relativenumber <CR>
 nnoremap <leader>i :set hlsearch! <CR>
 nnoremap <leader>q :x <CR>
-nnoremap <leader>x :qa! <CR> 
+nnoremap <leader>x :qa! <CR>
 nnoremap <leader>w :w <CR>
 nnoremap <leader>v <C-w>v
-nnoremap <leader>l <C-w>l 
+nnoremap <leader>l <C-w>l
 nnoremap <leader>h <C-w>h
 nnoremap <leader>n :NERDTreeToggle <CR>
 nnoremap <leader>N :NERDTreeFocus <CR>
-nnoremap <leader>è :source $MYVIMRC<CR> 
+nnoremap <leader>è :source $MYVIMRC<CR>
 noremap <leader>h ys(<CR>
 noremap <leader>[ ys[<CR>
 noremap <leader>{ ys[<CR>
 noremap <leader>{ yS)<CR>
 noremap <leader>{ yS]<CR>
 noremap <leader>{ yS}<CR>
-
+noremap <leader>t !autocomp
 
 :highlight Cursorline cterm=bold
 set tabstop =4
@@ -131,7 +131,7 @@ set guifont=JetBrainsMono\ Nerd\ Font:h10
 
 let g:markdown_enable_mappings = 0
 "Chezmoi
-autocmd BufWritePost ~/.local/share/chezmoi/* !chezmoi apply --source-path "%" 
+autocmd BufWritePost ~/.local/share/chezmoi/* !chezmoi apply --source-path "%"
 
 let g:mkdp_browser = '/bin/firefox'
 
