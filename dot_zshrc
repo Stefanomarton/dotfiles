@@ -15,7 +15,6 @@ bindkey -v
 alias sv= "sudo nvim"
 alias ka= "killall"
 alias v="nvim"
-alias r="ranger"
 alias music="ncmpcpp"
 alias i3config="nvim ~/.config/i3/config"
 alias lsa="ls -a"
@@ -28,8 +27,6 @@ alias gc="git commit"
 alias -g pwd="ptpwd"
 alias -g ls="ptls"
 alias -g ptcp="cp"
-
-
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
