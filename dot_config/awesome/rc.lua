@@ -8,6 +8,7 @@ local sharedtags = require("sharedtags")
 local awesomebuttons = require("awesome-buttons.awesome-buttons")
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 
 -- other configuration stuff here
 beautiful.init("some_theme.lua")
@@ -200,6 +201,9 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, 
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            ram_widget({ color_used='#ffffff',
+            color_free='#ff79c6'
+            }),
             cpu_widget({color = '#ff79c6'}),
             volume_widget{
             widget_type = "horizontal_bar",
@@ -222,7 +226,7 @@ local term_scratch = bling.module.scratchpad {
     sticky = true,                                    -- Whether the scratchpad should be sticky
     autoclose = true,                                 -- Whether it should hide itself when losing focus
     floating = true,                                  -- Whether it should be floating (MUST BE TRUE FOR ANIMATIONS)
-    geometry = {x=1100, y=120, height=900, width=1200}, -- The geometry in a floating state
+    geometry = {x=1100, y=280, height=900, width=1200}, -- The geometry in a floating state
    dont_focus_before_close  = true,                 -- When set to true, the scratchpad will be closed by the toggle function regardless of whether its focused or not. When set to false, the toggle function will first bring the scratchpad into focus and only close it on a second call
 }
 
@@ -232,7 +236,7 @@ local term = bling.module.scratchpad {
     sticky = true,                                    -- Whether the scratchpad should be sticky
     autoclose = true,                                 -- Whether it should hide itself when losing focus
     floating = true,                                  -- Whether it should be floating (MUST BE TRUE FOR ANIMATIONS)
-    geometry = {x=1100, y=120, height=900, width=1200}, -- The geometry in a floating state
+    geometry = {x=1100, y=280, height=900, width=1200}, -- The geometry in a floating state
    dont_focus_before_close  = true,                 
 }
 
@@ -273,9 +277,9 @@ awful.key({ modkey,           }, "j",
               {description = "swap with next client by index", group = "client"}),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
               {description = "swap with previous client by index", group = "client"}),
-    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end,
+    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_bydirection("left") end,
               {description = "focus the next screen", group = "screen"}),
-    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end,
+    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_bydirection("right") end,
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
@@ -565,6 +569,26 @@ end
 
 
 beautiful.tasklist_disable_icon = "true"
---bling.module.flash_focus.enable()
+bling.module.flash_focus.enable()
+beautiful.notification_icon_size = 64 
 
 
+---- When client get created
+--client.connect_signal("manage", function(c)
+--local t = awful.screen.focused().selected_tag
+--    if #t:clients() > 1 then
+--    beautiful.useless_gap = 15
+--    else
+--    beautiful.useless_gap = 60
+--    end
+--end)
+--
+---- When client get deleted
+--client.connect_signal("unmanage", function(c)
+-- local t = awful.screen.focused().selected_tag
+--    if #t:clients() > 1 then
+--    beautiful.useless_gap = 3
+--    else
+--    beautiful.useless_gap = 10
+--    end
+--end)
