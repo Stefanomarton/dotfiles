@@ -1,28 +1,30 @@
+------------------------------------------------ Module loading
+
  -- Error handling
 require("main.error-handling")
 pcall(require, "luarocks.loader")
 
--- other imports
+
 local beautiful = require("beautiful")
-local sharedtags = require("sharedtags")
 local awesomebuttons = require("awesome-buttons.awesome-buttons")
+
+-- Widgets
 local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
+local wibox = require("wibox")
+local logout_popup = require("logout-popup-widget.logout-popup")
 
 -- other configuration stuff here
 beautiful.init("some_theme.lua")
 local bling = require("bling")
 beautiful.init("some_theme.lua")
+local lain = require("lain")
 
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
-
--- Widget and layout library
-local wibox = require("wibox")
-local logout_popup = require("logout-popup-widget.logout-popup")
 
 -- Theme handling library
 local beautiful = require("beautiful")
@@ -37,16 +39,7 @@ require("awful.hotkeys_popup.keys")
 
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
--- Windows preview
-bling.widget.window_switcher.enable {
-    type = "thumbnail", -- set to anything other than "thumbnail" to disable client previews
-    cycleClientsByIdx = awful.client.focus.byidx,               -- The function to cycle the clients
-    filterClients = awful.widget.tasklist.filter.focused,   -- The function to filter the viewed clients
-}
--- {{{ Variable definitions
-
--- Themes define colours, icons, font and wallpapers.
-gears.wallpaper.maximized("~/Pictures/evening-sky.png")
+----------------------------------------------- Variable definitions
 
 -- This is used later as the default terminal and editor to run.
 terminal = "kitty"
@@ -56,13 +49,14 @@ editor_cmd = terminal .. " -e " .. editor
 -- Layouts
 -- Table of layouts to cover with awful.layout.inc, order matters.
  awful.layout.layouts = {
-    bling.layout.centered,
+    lain.layout.centerwork,
+    --bling.layout.centered,
     --awful.layout.suit.tile,
 	-- bling.layout.centered,
     -- awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.bottom,
     --awful.layout.suit.tile.top,
-    --awful.layout.suit.fair,
+    awful.layout.suit.fair,
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.spiral,
     --awful.layout.suit.spiral.dwindle,
@@ -74,15 +68,13 @@ editor_cmd = terminal .. " -e " .. editor
     -- awful.layout.suit.corner.se,
     --awful.layout.suit.max.fullscreen,
 }
---}}}
 
--- Default modkey.
+-- Default modkey
 modkey = "Mod4"
 
--- Menubar configuration
-menubar.utils.terminal = alacritty -- Set the terminal for applications that require it
--- }}}
+------------------------------------------ Wallpaper settings
 
+-- Wallpapersettings
 local function set_wallpaper(s)
     -- Wallpaper
     if beautiful.wallpaper then
@@ -96,7 +88,7 @@ local function set_wallpaper(s)
 end
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", set_wallpaper)
+--screen.connect_signal("property::geometry", set_wallpaper)
 
 ---- When client get created
 --client.connect_signal("manage", function(c)
@@ -117,11 +109,12 @@ screen.connect_signal("property::geometry", set_wallpaper)
 --    local a = expand
 --    end
 --end)
+lain.layout.termfair.center.nmaster = 3
+lain.layout.termfair.ncol    = 1
+-------------------------------------------------------- Tag settigns
 
--- Each screen has unique tag table (sort of, tags 6-10 are renamed tags 1-4 on second screen)
 awful.tag.add("  ·  ", {
-    layout             = bling.layout.centered,
-    master_fill_policy = "master_width_factor",
+    layout             = lain.layout.centerwork,
     gap_single_client  = true,
     gap                = 15,
     screen             = 1,
@@ -129,21 +122,21 @@ awful.tag.add("  ·  ", {
 })
 
 awful.tag.add("  ·  ", {
-    layout             = bling.layout.centered,
+    layout             = lain.layout.centerwork,
     gap_single_client  = true,
     gap                = 15,
     screen             = 1,
 })
 
 awful.tag.add("  ·  ", {
-    layout             = bling.layout.centered,
+    layout             = lain.layout.centerwork,
     gap_single_client  = true,
     gap                = 15,
     screen             = 1,
 })
 
 awful.tag.add("  ·  ", {
-    layout             = bling.layout.centered,
+    layout             = lain.layout.centerwork,
     gap_single_client  = true,
     gap                = 15,
     screen             = 1,
@@ -183,11 +176,8 @@ awful.tag.add("  ·  ", {
     screen             = 3,
 })
 
-
+------------------------------------------- Wibar settings ------------------
 awful.screen.connect_for_each_screen(function(s)
-
-    -- Wallpaper
-    set_wallpaper(s)
 
 if s == screen.primary
     then
@@ -297,38 +287,51 @@ local tasklist_buttons = gears.table.join(
     }
 end
 end)
--- }}}
--- Sratchpads
+--------------------------------------------- Scratchpads ----------------
+
     -- Ranger
 local term_scratch = bling.module.scratchpad {
-    command = "kitty --class spad -e ranger GoogleDrive/Università",           -- How to spawn the scratchpad
-    rule = { instance = "spad" },                     -- The rule that the scratchpad will be searched by
-    sticky = true,                                    -- Whether the scratchpad should be sticky
-    autoclose = true,                                 -- Whether it should hide itself when losing focus
-    floating = true,                                  -- Whether it should be floating (MUST BE TRUE FOR ANIMATIONS)
-    geometry = {x=1100, y=280, height=900, width=1200}, -- The geometry in a floating state
-   dont_focus_before_close  = true,                 -- When set to true, the scratchpad will be closed by the toggle function regardless of whether its focused or not. When set to false, the toggle function will first bring the scratchpad into focus and only close it on a second call
-}
-
-local term = bling.module.scratchpad {
-    command = "kitty --class termscratch",
-    rule = { instance = "termscratch" },                     -- The rule that the scratchpad will be searched by
-    sticky = true,                                    -- Whether the scratchpad should be sticky
-    autoclose = true,                                 -- Whether it should hide itself when losing focus
-    floating = true,                                  -- Whether it should be floating (MUST BE TRUE FOR ANIMATIONS)
-    geometry = {x=1100, y=280, height=900, width=1200}, -- The geometry in a floating state
+    command = "kitty --class spad -e ranger GoogleDrive/Università",
+    rule = { instance = "spad" },
+    sticky = true,
+    autoclose = true,
+    floating = true,
+    geometry = {x=1100, y=280, height=900, width=1200},
    dont_focus_before_close  = true,
 }
 
+    -- Terminal
+local term = bling.module.scratchpad {
+    command = "kitty --class termscratch",
+    rule = { instance = "termscratch" },
+    sticky = true,
+    autoclose = true,
+    floating = true,
+    geometry = {x=1100, y=280, height=900, width=1200},
+    dont_focus_before_close  = true,
+}
 
--- {{{ Mouse bindings
+    -- Mixer
+local mixer = bling.module.scratchpad {
+    command = "kitty --class mixer -e pulsemixer",
+    rule = { instance = "termscratch" },
+    sticky = true,
+    autoclose = true,
+    floating = true,
+    geometry = {x=1100, y=280, height=900, width=1200},
+    dont_focus_before_close  = true,
+}
+
+---------------------------------- Key bindings ----------------------
+
+--- Mouse bindings
 root.buttons(gears.table.join(
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
--- }}}
 
--- {{{ Key bindings
+
+--- Key bindings
 
 globalkeys = gears.table.join(
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
@@ -415,6 +418,7 @@ awful.key({ modkey,           }, "j",
     -- Scratchpads
     awful.key ( { modkey}, "w", function() term_scratch:turn_on() end),
     awful.key ( { modkey}, "t", function() term:turn_on() end),
+    awful.key ( { modkey}, "m", function() mixer:turn_on() end),
    -- Menubar
     awful.key({ modkey }, "p", function() awful.util.spawn("dmenu_run -c -g 3 -o 0.2 -fn 'Droid Sans Mono-14' -l 10 -h 20 -bw 1") end,
               {description = "show the menubar", group = "launcher"}),
@@ -516,13 +520,7 @@ for i = 1, 9 do
                           end
                       end
                   end,
-                  {description = "toggle focused client on tag #" .. i, group = "tag"}),
-        awful.key({ modkey ,"Shift" }, "#" .. i +9,
-                function(c)
-            move_client_to_screen(c,i)
-        end
-    )
-           )
+                  {description = "toggle focused client on tag #" .. i, group = "tag"}))
 end
 
 clientbuttons = gears.table.join(
@@ -543,7 +541,7 @@ clientbuttons = gears.table.join(
 root.keys(globalkeys)
 -- }}}
 
--- {{{ Rules
+------------------------------------------------- Rules -----------------
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
     -- All clients will match this rule.
@@ -601,12 +599,12 @@ awful.rules.rules = {
  { rule = { class = "spotify" },
  properties = { screen = 3, tag = "1" } },
 
- { rule = { class = "microsoft teams - preview" },
- properties = { screen = 3, tag = "1" } },
+ { rule = { class = "Microsoft Teams - Preview" },
+ properties = { screen = 2, tag = "1" } },
    }
--- }}}
 
--- {{{ Signals
+---------------------------------------- Signals ----------------------
+
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
@@ -631,16 +629,18 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
--- Gaps
 
--- Autostart
+---------------------------------- Autostart -----------
+
 awful.spawn.with_shell("xset r rate 300 60")
 awful.spawn("picom")
 awful.spawn.with_shell("nm-applet")
 awful.spawn("overgrive")
 awful.spawn.with_shell("~/.screenlayout/monitor.sh")
 awful.spawn.with_shell("xmodmap ~/.Xmodmap")
-awful.spawn.with_shell("python ~/.config/awesome/autohidewibox.py")
+--awful.spawn.with_shell("python ~/.config/awesome/autohidewibox.py")
+
+screen.connect_signal("property::geometry", set_wallpaper)
 -- Wallpaper
 beautiful.init("~/.config/awesome/theme.lua")
 for s = 1, screen.count() do
