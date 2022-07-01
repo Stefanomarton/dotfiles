@@ -1,0 +1,9 @@
+# pack-refs with: peeled fully-peeled sorted 
+d588ef18ee51c088a6a04a88f5ca57c01aebd05f refs/remotes/origin/dev
+b9bcff50d13b019b81dbd5f27c1958b3972b0317 refs/remotes/origin/dev-assets
+4402365821a0d272a54ce734b43dc74e4a2d8ea8 refs/remotes/origin/dev-doc
+70dbb46395b484d7613cf6e90b695eb0c3439bd7 refs/remotes/origin/dev-rc
+d790197c822247fb67ce97266787e873b6223f44 refs/remotes/origin/dev-remaster
+cc507a821f00daaf332f56a707b43741040bdcf1 refs/remotes/origin/experiments
+773d339cbd307fe218cf7b3ea04eac26b345a3b7 refs/remotes/origin/main
+d262f03901721b208471f6c246a4e562026a3ecc refs/remotes/origin/old-catppuccino

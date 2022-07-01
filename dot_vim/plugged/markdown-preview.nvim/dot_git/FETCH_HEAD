@@ -1,0 +1,4 @@
+02cc3874738bc0f86e4b91f09b8a0ac88aef8e96		branch 'master' of https://github.com/iamcco/markdown-preview.nvim
+92d73984300f571e4ab554e4a4aecb5a04eb7210	not-for-merge	branch 'dependabot/npm_and_yarn/next-12.1.0' of https://github.com/iamcco/markdown-preview.nvim
+0da03bb2159227163a91a35c83d89a8591372e6d	not-for-merge	branch 'feature/refresh-optimize' of https://github.com/iamcco/markdown-preview.nvim
+5a35462650e6c6b99143a15b76d6328266317a62	not-for-merge	branch 'separate-pre-build-node' of https://github.com/iamcco/markdown-preview.nvim

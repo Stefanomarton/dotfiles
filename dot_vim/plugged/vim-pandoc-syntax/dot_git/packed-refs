@@ -1,0 +1,9 @@
+# pack-refs with: peeled fully-peeled sorted 
+ff932ef09a033904ba7ab4ecd03cc30813ec410a refs/remotes/origin/7.3
+070214491db677afb8ad351d405b4c2f44cc1304 refs/remotes/origin/ancillary
+f6138bfd9264108155abf16415580b456c76d7bd refs/remotes/origin/commonmark
+ff52ed9296715988fc3269b64a903415c3bdf322 refs/remotes/origin/master
+56bd7e978da907a75496841eae9a37e2bb068ddb refs/remotes/origin/minimized
+3be9ad71e214a04d2b9cb8495992c98aee7c2dbb refs/remotes/origin/mlua
+94270559089358aeb68c91ec88001630c42b9ab1 refs/remotes/origin/more-spelling
+ee59c576a2278122a2e6a8bd147a44db7ece5981 refs/remotes/origin/rwxrob/smart-quotes

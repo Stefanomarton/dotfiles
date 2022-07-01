@@ -1,0 +1,9 @@
+976ebfe61b407d0a75d87b4a507bf9ae4ffffbaa		branch 'master' of https://github.com/andymass/vim-matchup
+0e773de51513accbd5c830c5e3e2be2a9aa1ce39	not-for-merge	branch 'bugfix-186-ins-cur' of https://github.com/andymass/vim-matchup
+dc1e231e38be53bd5572772b1d9cb83c6bed3c36	not-for-merge	branch 'compat-898' of https://github.com/andymass/vim-matchup
+ca65c0e14caa4ce9de9d6f94351c762b839b83f5	not-for-merge	branch 'dev-test-ts-split' of https://github.com/andymass/vim-matchup
+184a1b825e5ff1377b5de00ae55600f3744eed7c	not-for-merge	branch 'feature-deferred' of https://github.com/andymass/vim-matchup
+1f73e8eba63c1f7ed344c461bcc28d73a4965606	not-for-merge	branch 'feature-surround' of https://github.com/andymass/vim-matchup
+7b71df6a53acb96337199228ee8eaaae2c1ecf06	not-for-merge	branch 'github-actions' of https://github.com/andymass/vim-matchup
+fd9f3c09b04725c8042149bfe3fd080b6f6962cb	not-for-merge	branch 'legacy-testing' of https://github.com/andymass/vim-matchup
+85dbf4ee8a791e42538116befac6653b9e2dad2d	not-for-merge	branch 'lint-ts-queries' of https://github.com/andymass/vim-matchup

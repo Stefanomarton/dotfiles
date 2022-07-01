@@ -1,0 +1,33 @@
+{
+    // autoformat
+    "coc.preferences.formatOnSaveFiletypes": [
+        "css",
+        "tex",
+        "markdown",
+        "javascript",
+        "graphql",
+        "html",
+        "yaml",
+        "json",
+        "python"
+    ],
+    "suggest.autoTrigger": "trigger",
+    // snippets
+    "snippets.ultisnips.directories": [
+        "UltiSnips",
+        "~/.config/nvim/UltiSnips"
+    ],
+    // explorer
+    "explorer.width": 30,
+    "explorer.icon.enableNerdfont": true,
+    "explorer.previewAction.onHover": false,
+    "explorer.icon.enableNerdFont": true,
+    "explorer.icon.source": "vim-devicons",
+    "explorer.keyMappings.global": {
+        "<cr>": [
+            "expandable?",
+            "expand",
+            "open"
+        ]
+    }
+}

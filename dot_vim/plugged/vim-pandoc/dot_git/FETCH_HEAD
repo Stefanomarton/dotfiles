@@ -1,0 +1,5 @@
+fcdb70e6456362e15db95fbe82f56165ab35de8a		branch 'master' of https://github.com/vim-pandoc/vim-pandoc
+bb72d0c734d269e792d765a4728717c89f93d8a1	not-for-merge	branch 'autoformat' of https://github.com/vim-pandoc/vim-pandoc
+afb52b54b9318a3209ccf7b19721daf0d23d71da	not-for-merge	branch 'fix-version-win' of https://github.com/vim-pandoc/vim-pandoc
+cdf99270852571345aa441264ff17d12b0803a8d	not-for-merge	branch 'next-biblio' of https://github.com/vim-pandoc/vim-pandoc
+c4cb16eae1ac92d45ba56ef1c3013cc777741f10	not-for-merge	branch 'py3-refactor' of https://github.com/vim-pandoc/vim-pandoc
