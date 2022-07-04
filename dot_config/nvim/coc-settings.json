@@ -9,7 +9,8 @@
         "html",
         "yaml",
         "json",
-        "python"
+        "python",
+        "lua"
     ],
     "suggest.autoTrigger": "trigger",
     // snippets

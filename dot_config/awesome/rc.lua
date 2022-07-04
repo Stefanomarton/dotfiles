@@ -87,31 +87,11 @@ local function set_wallpaper(s)
     end
 end
 
--- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
---screen.connect_signal("property::geometry", set_wallpaper)
 
----- When client get created
---client.connect_signal("manage", function(c)
---local t = awful.screen.focused().selected_tag
---    if #t:clients() == 1 then
---    local a = master_width_factor
---    else
---    local a = expand
---    end
---end)
---
----- When client get deleted
---client.connect_signal("unmanage", function(c)
--- local t = awful.screen.focused().selected_tag
---    if #t:clients() == 1 then
---    local a = master_width_factor
---    else
---    local a = expand
---    end
---end)
 lain.layout.termfair.center.nmaster = 3
+
 lain.layout.termfair.ncol    = 1
--------------------------------------------------------- Tag settigns
+----------------------------------------------- Tag settings ------
 
 awful.tag.add("  ·  ", {
     layout             = lain.layout.centerwork,
@@ -297,7 +277,7 @@ local term_scratch = bling.module.scratchpad {
     autoclose = true,
     floating = true,
     geometry = {x=1100, y=280, height=900, width=1200},
-   dont_focus_before_close  = true,
+    dont_focus_before_close  = true,
 }
 
     -- Terminal
@@ -322,6 +302,16 @@ local mixer = bling.module.scratchpad {
     dont_focus_before_close  = true,
 }
 
+
+local galculator= bling.module.scratchpad {
+    command = "galculator",
+    rule = { instance = "galculator" },
+    sticky = true,
+    autoclose = true,
+    floating = true,
+    geometry = {x=1300, y=350, height=600, width=900},
+    dont_focus_before_close  = true,
+}
 ---------------------------------- Key bindings ----------------------
 
 --- Mouse bindings
@@ -419,6 +409,7 @@ awful.key({ modkey,           }, "j",
     awful.key ( { modkey}, "w", function() term_scratch:turn_on() end),
     awful.key ( { modkey}, "t", function() term:turn_on() end),
     awful.key ( { modkey}, "m", function() mixer:turn_on() end),
+    awful.key ( { modkey}, "g", function() galculator:turn_on() end),
    -- Menubar
     awful.key({ modkey }, "p", function() awful.util.spawn("dmenu_run -c -g 3 -o 0.2 -fn 'Droid Sans Mono-14' -l 10 -h 20 -bw 1") end,
               {description = "show the menubar", group = "launcher"}),
@@ -601,6 +592,9 @@ awful.rules.rules = {
 
  { rule = { class = "Microsoft Teams - Preview" },
  properties = { screen = 2, tag = "1" } },
+
+ { rule = { instance = "Places" },
+ properties = { floating = true, raise = true, placement = awful.placement.centered}},
    }
 
 ---------------------------------------- Signals ----------------------
@@ -641,6 +635,7 @@ awful.spawn.with_shell("xmodmap ~/.Xmodmap")
 --awful.spawn.with_shell("python ~/.config/awesome/autohidewibox.py")
 
 screen.connect_signal("property::geometry", set_wallpaper)
+
 -- Wallpaper
 beautiful.init("~/.config/awesome/theme.lua")
 for s = 1, screen.count() do
@@ -648,6 +643,6 @@ for s = 1, screen.count() do
 end
 
 
-beautiful.tasklist_disable_icon = "true"
+--beautiful.tasklist_disable_icon = "false"
 bling.module.flash_focus.enable()
 beautiful.notification_icon_size = 64
