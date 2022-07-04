@@ -1,4 +1,2 @@
-{{- if ne .chezmoi.hostname "stefanomarton" }}
 awesome
-{{- end }}
 
