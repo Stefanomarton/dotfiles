@@ -59,7 +59,8 @@ Plug 'neoclide/coc.nvim'
 
 Plug 'voldikss/vim-floaterm'
 
-Plug 'anufrievroman/vim-tex-kawaii'
+
+
 call plug#end()
 
 " ---------------------------------------------Theming -----------------------------------------------"
@@ -75,7 +76,7 @@ let g:airline_powerline_fonts = 1
 let g:rainbow_active = 1
 
 "--------------------------------------------- Settings -----------------------------------------------"
-
+set modifiable 
 syntax on
 set relativenumber
 set mouse=a
@@ -171,6 +172,7 @@ nnoremap <leader>n :CocCommand explorer <CR>
 nnoremap <leader>è :source $MYVIMRC<CR>
 nnoremap J 4j
 nnoremap K 4k
+
 
 " Compiling shortcuts
 "noremap <leader>P :w<CR> :!pdflatex %:r.tex && bibtex %:r.aux && pdflatex %:r.tex && pdflatex %:r.tex && rm %:r.aux %:r.log %:r.blg %:r.bbl<cr>
