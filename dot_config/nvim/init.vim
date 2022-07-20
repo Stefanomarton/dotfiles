@@ -76,6 +76,7 @@ let g:airline_powerline_fonts = 1
 let g:rainbow_active = 1
 
 "--------------------------------------------- Settings -----------------------------------------------"
+set scrolloff=8
 set modifiable 
 syntax on
 set relativenumber
